@@ -74,7 +74,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body
 
     /* Check if user exists */
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return res.status(409).json({ message: "User doesn't exist!" });
     }
@@ -87,9 +87,10 @@ router.post("/login", async (req, res) => {
 
     /* Generate JWT token */
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-    delete user.password
+    const userObj = user.toObject();
+    delete userObj.password;
 
-    res.status(200).json({ token, user })
+    res.status(200).json({ token, user: userObj })
 
   } catch (err) {
     console.log(err)

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer_left">
-        <a href="/"><img src="/assets/logo.png" alt="logo" /></a>
+        <h3>Home Rental</h3>
       </div>
 
       <div className="footer_center">
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
         <div className="footer_right_info">
           <Email />
-          <p>dreamnest@support.com</p>
+          <p>altruist@support.com</p>
         </div>
         <img src="/assets/payment.png" alt="payment" />
       </div>
